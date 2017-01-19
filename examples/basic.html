@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <script src='vendor/three.js/build/three.min.js'></script>
+<script src='vendor/three.js/build/OrbitControls.js'></script>
 <script src='../threex.planets.js'></script>
 
 <body style='margin: 0px; background-color: #000000; overflow: hidden;'>
   <script>
-  var renderer, updateFcts, scene, camera, light, earthMesh, mesh, mouse, lastTimeMsec, deltaMsec;
+  var renderer, updateFcts, scene, camera, light, earthMesh, mesh, mouse, lastTimeMsec, deltaMsec, controls;
   renderer = new THREE.WebGLRenderer({
     antialias: true
   });
@@ -16,7 +17,8 @@
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100);
   camera.position.z = 3;
-
+  controls = new THREE.OrbitControls(camera);
+  controls.addEventListener('change', render);
   light = new THREE.AmbientLight(0x888888)
   scene.add(light)
 
@@ -40,7 +42,7 @@
   light.shadowMapHeight = 1024
 
   //////////////////////////////////////////////////////////////////////////////////
-  //		add an object and make it move					//
+  //    add an object and make it move          //
   //////////////////////////////////////////////////////////////////////////////////
   earthMesh = THREEx.Planets.createEarth()
   scene.add(earthMesh)
@@ -57,7 +59,7 @@
   })
 
   //////////////////////////////////////////////////////////////////////////////////
-  //		Camera Controls							//
+  //    Camera Controls             //
   //////////////////////////////////////////////////////////////////////////////////
   mouse = {
     x: 0,
@@ -75,14 +77,14 @@
 
 
   //////////////////////////////////////////////////////////////////////////////////
-  //		render the scene						//
+  //    render the scene            //
   //////////////////////////////////////////////////////////////////////////////////
   updateFcts.push(function() {
     renderer.render(scene, camera);
   })
 
   //////////////////////////////////////////////////////////////////////////////////
-  //		loop runner							//
+  //    loop runner             //
   //////////////////////////////////////////////////////////////////////////////////
   lastTimeMsec = null
   requestAnimationFrame(function animate(nowMsec) {
