@@ -4,22 +4,23 @@
 
 <body style='margin: 0px; background-color: #000000; overflow: hidden;'>
   <script>
-  var renderer = new THREE.WebGLRenderer({
+  var renderer, updateFcts, scene, camera, light, earthMesh, mesh, mouse, lastTimeMsec, deltaMsec;
+  renderer = new THREE.WebGLRenderer({
     antialias: true
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
   renderer.shadowMapEnabled = true
 
-  var updateFcts = [];
-  var scene = new THREE.Scene();
-  var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100);
+  updateFcts = [];
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100);
   camera.position.z = 3;
 
-  var light = new THREE.AmbientLight(0x888888)
+  light = new THREE.AmbientLight(0x888888)
   scene.add(light)
 
-  var light = new THREE.DirectionalLight(0xcccccc, 1)
+  light = new THREE.DirectionalLight(0xcccccc, 1)
   light.position.set(5, 5, 5)
   scene.add(light)
   light.castShadow = true
@@ -41,9 +42,9 @@
   //////////////////////////////////////////////////////////////////////////////////
   //		add an object and make it move					//
   //////////////////////////////////////////////////////////////////////////////////
-  var earthMesh = THREEx.Planets.createEarth()
+  earthMesh = THREEx.Planets.createEarth()
   scene.add(earthMesh)
-  var mesh = THREEx.Planets.createEarthCloud()
+  mesh = THREEx.Planets.createEarthCloud()
   scene.add(mesh)
   updateFcts.push(function(delta, now) {
     mesh.rotation.y += 1 / 8 * delta;
@@ -58,7 +59,7 @@
   //////////////////////////////////////////////////////////////////////////////////
   //		Camera Controls							//
   //////////////////////////////////////////////////////////////////////////////////
-  var mouse = {
+  mouse = {
     x: 0,
     y: 0
   }
@@ -83,13 +84,13 @@
   //////////////////////////////////////////////////////////////////////////////////
   //		loop runner							//
   //////////////////////////////////////////////////////////////////////////////////
-  var lastTimeMsec = null
+  lastTimeMsec = null
   requestAnimationFrame(function animate(nowMsec) {
     // keep looping
     requestAnimationFrame(animate);
     // measure time
     lastTimeMsec = lastTimeMsec || nowMsec - 1000 / 60
-    var deltaMsec = Math.min(200, nowMsec - lastTimeMsec)
+    deltaMsec = Math.min(200, nowMsec - lastTimeMsec)
     lastTimeMsec = nowMsec
       // call each update function
     updateFcts.forEach(function(updateFn) {
