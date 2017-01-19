@@ -46,8 +46,8 @@
   var mesh = THREEx.Planets.createEarthCloud()
   scene.add(mesh)
   updateFcts.push(function(delta, now) {
-    mesh.rotation.y += 1 / 5 * delta;
-    earthMesh.rotation.y += 1 / 8 * delta;
+    mesh.rotation.y += 1 / 8 * delta;
+    earthMesh.rotation.y += 1 / 16 * delta;
   })
 
   updateFcts.push(function(delta, now) {
