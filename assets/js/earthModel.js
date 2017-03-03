@@ -6,10 +6,10 @@ Earth.createEarth = function() {
     var geometry, material, mesh;
     geometry = new THREE.SphereGeometry(1, 32, 32)
     material = new THREE.MeshPhongMaterial({
-        map: THREE.ImageUtils.loadTexture(Earth.baseURL + '/assets/images/earthmap1k.jpg'),
-        bumpMap: THREE.ImageUtils.loadTexture(Earth.baseURL + '/assets/images/earthbump1k.jpg'),
+        map: THREE.ImageUtils.loadTexture(Earth.baseURL + 'images/earthmap1k.jpg'),
+        bumpMap: THREE.ImageUtils.loadTexture(Earth.baseURL + 'images/earthbump1k.jpg'),
         bumpScale: 0.05,
-        specularMap: THREE.ImageUtils.loadTexture(Earth.baseURL + '/assets/images/earthspec1k.jpg'),
+        specularMap: THREE.ImageUtils.loadTexture(Earth.baseURL + 'images/earthspec1k.jpg'),
         specular: new THREE.Color('grey'),
     })
     mesh = new THREE.Mesh(geometry, material)
@@ -62,9 +62,9 @@ Earth.createEarthCloud = function() {
             contextResult.putImageData(dataResult, 0, 0)
             material.map.needsUpdate = true;
         })
-        imageTrans.src = Earth.baseURL + '/assets/images/earthcloudmaptrans.jpg';
+        imageTrans.src = Earth.baseURL + 'images/earthcloudmaptrans.jpg';
     }, false);
-    imageMap.src = Earth.baseURL + '/assets/images/earthcloudmap.jpg';
+    imageMap.src = Earth.baseURL + 'images/earthcloudmap.jpg';
 
     geometry = new THREE.SphereGeometry(1.01, 32, 32)
     material = new THREE.MeshPhongMaterial({
