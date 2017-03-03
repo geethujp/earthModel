@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <script src='vendor/three.js/build/three.min.js'></script>
-<script src='../threex.planets.js'></script>
+<script src='../earthModel.js'></script>
 
 <body style='margin: 0px; background-color: #000000; overflow: hidden;'>
   <script>
@@ -42,9 +42,9 @@
   //////////////////////////////////////////////////////////////////////////////////
   //    add an object and make it move          //
   //////////////////////////////////////////////////////////////////////////////////
-  earthMesh = THREEx.Planets.createEarth()
+  earthMesh = Earth.createEarth()
   scene.add(earthMesh)
-  mesh = THREEx.Planets.createEarthCloud()
+  mesh = Earth.createEarthCloud()
   scene.add(mesh)
   updateFcts.push(function(delta, now) {
     mesh.rotation.y += 1 / 8 * delta;
