@@ -1,7 +1,6 @@
 var Earth = Earth || {}
 
-
-Earth.baseURL = '../'
+Earth.baseURL = '../assets/'
 
 Earth.createEarth = function() {
     var geometry, material, mesh;
@@ -74,21 +73,6 @@ Earth.createEarthCloud = function() {
         transparent: true,
         opacity: 0.8,
     })
-    mesh = new THREE.Mesh(geometry, material)
-    return mesh
-}
-
-
-
-
-Earth.createStarfield = function() {
-    var texture, material, geometry, mesh;
-    texture = THREE.ImageUtils.loadTexture(Earth.baseURL + 'images/galaxy_starfield.png')
-    material = new THREE.MeshBasicMaterial({
-        map: texture,
-        side: THREE.BackSide
-    })
-    geometry = new THREE.SphereGeometry(100, 32, 32)
     mesh = new THREE.Mesh(geometry, material)
     return mesh
 }

@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<script src='vendor/three.js/build/three.min.js'></script>
-<script src='../earthModel.js'></script>
+<html>
 
-<body style='margin: 0px; background-color: #000000; overflow: hidden;'>
+<head>
+  <title>Earth Model</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/earthModel.css">
+</head>
+
+<body>
+  <script src='assets/js/lib/three.min.js'></script>
+  <script src='assets/js/earthModel.js'></script>
   <script>
   var renderer, updateFcts, scene, camera, light, earthMesh, mesh, mouse, lastTimeMsec, deltaMsec;
   renderer = new THREE.WebGLRenderer({
@@ -99,3 +105,5 @@
   })
   </script>
 </body>
+
+</html>
