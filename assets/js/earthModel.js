@@ -1,6 +1,6 @@
 var Earth = Earth || {}
 
-Earth.baseURL = '../'
+Earth.baseURL = '/../'
 
 Earth.createEarth = function() {
     var geometry, material, mesh;
