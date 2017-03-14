@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<script src='vendor/three.js/build/three.min.js'></script>
-<script src='../threex.planets.js'></script>
+<html>
 
-<body style='margin: 0px; background-color: #000000; overflow: hidden;'>
+<head>
+  <title>Earth Model</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/earthModel.css">
+</head>
+
+<body>
+  <script src='assets/js/lib/three.min.js'></script>
+  <script src='assets/js/earthModel.js'></script>
   <script>
   var renderer, updateFcts, scene, camera, light, earthMesh, mesh, mouse, lastTimeMsec, deltaMsec;
   renderer = new THREE.WebGLRenderer({
@@ -40,11 +46,11 @@
   light.shadowMapHeight = 1024
 
   //////////////////////////////////////////////////////////////////////////////////
-  //		add an object and make it move					//
+  //    add an object and make it move          //
   //////////////////////////////////////////////////////////////////////////////////
-  earthMesh = THREEx.Planets.createEarth()
+  earthMesh = Earth.createEarth()
   scene.add(earthMesh)
-  mesh = THREEx.Planets.createEarthCloud()
+  mesh = Earth.createEarthCloud()
   scene.add(mesh)
   updateFcts.push(function(delta, now) {
     mesh.rotation.y += 1 / 8 * delta;
@@ -57,7 +63,7 @@
   })
 
   //////////////////////////////////////////////////////////////////////////////////
-  //		Camera Controls							//
+  //    Camera Controls             //
   //////////////////////////////////////////////////////////////////////////////////
   mouse = {
     x: 0,
@@ -75,14 +81,14 @@
 
 
   //////////////////////////////////////////////////////////////////////////////////
-  //		render the scene						//
+  //    render the scene            //
   //////////////////////////////////////////////////////////////////////////////////
   updateFcts.push(function() {
     renderer.render(scene, camera);
   })
 
   //////////////////////////////////////////////////////////////////////////////////
-  //		loop runner							//
+  //    loop runner             //
   //////////////////////////////////////////////////////////////////////////////////
   lastTimeMsec = null
   requestAnimationFrame(function animate(nowMsec) {
@@ -99,3 +105,5 @@
   })
   </script>
 </body>
+
+</html>

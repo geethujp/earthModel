@@ -1,24 +1,22 @@
-var THREEx = THREEx || {}
+var Earth = Earth || {}
 
-THREEx.Planets = {}
+Earth.baseURL = '/'
 
-THREEx.Planets.baseURL = '../'
-
-THREEx.Planets.createEarth = function() {
+Earth.createEarth = function() {
     var geometry, material, mesh;
     geometry = new THREE.SphereGeometry(1, 32, 32)
     material = new THREE.MeshPhongMaterial({
-        map: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL + 'images/earthmap1k.jpg'),
-        bumpMap: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL + 'images/earthbump1k.jpg'),
+        map: THREE.ImageUtils.loadTexture(Earth.baseURL + 'assets/images/earthmap1k.jpg'),
+        bumpMap: THREE.ImageUtils.loadTexture(Earth.baseURL + 'assets/images/earthbump1k.jpg'),
         bumpScale: 0.05,
-        specularMap: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL + 'images/earthspec1k.jpg'),
+        specularMap: THREE.ImageUtils.loadTexture(Earth.baseURL + 'assets/images/earthspec1k.jpg'),
         specular: new THREE.Color('grey'),
     })
     mesh = new THREE.Mesh(geometry, material)
     return mesh
 }
 
-THREEx.Planets.createEarthCloud = function() {
+Earth.createEarthCloud = function() {
     var canvasResult, contextResult, imageMap, geometry, material, mesh;
 
     // create destination canvas
@@ -64,9 +62,9 @@ THREEx.Planets.createEarthCloud = function() {
             contextResult.putImageData(dataResult, 0, 0)
             material.map.needsUpdate = true;
         })
-        imageTrans.src = THREEx.Planets.baseURL + 'images/earthcloudmaptrans.jpg';
+        imageTrans.src = Earth.baseURL + 'assets/images/earthcloudmaptrans.jpg';
     }, false);
-    imageMap.src = THREEx.Planets.baseURL + 'images/earthcloudmap.jpg';
+    imageMap.src = Earth.baseURL + 'assets/images/earthcloudmap.jpg';
 
     geometry = new THREE.SphereGeometry(1.01, 32, 32)
     material = new THREE.MeshPhongMaterial({
@@ -75,21 +73,6 @@ THREEx.Planets.createEarthCloud = function() {
         transparent: true,
         opacity: 0.8,
     })
-    mesh = new THREE.Mesh(geometry, material)
-    return mesh
-}
-
-
-
-
-THREEx.Planets.createStarfield = function() {
-    var texture, material, geometry, mesh;
-    texture = THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL + 'images/galaxy_starfield.png')
-    material = new THREE.MeshBasicMaterial({
-        map: texture,
-        side: THREE.BackSide
-    })
-    geometry = new THREE.SphereGeometry(100, 32, 32)
     mesh = new THREE.Mesh(geometry, material)
     return mesh
 }
