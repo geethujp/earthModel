@@ -1,12 +1,12 @@
 var Earth = Earth || {}
 
-Earth.baseURL = '../'
+Earth.baseURL = '/'
 
 Earth.createEarth = function() {
     var geometry, material, mesh;
     geometry = new THREE.SphereGeometry(1, 32, 32)
     material = new THREE.MeshPhongMaterial({
-        map: THREE.ImageUtils.loadTexture(Earth.baseURL + 'assets/images/earthmap1k.jpg'),
+        map: THREE.ImageUtils.loadTexture(Earth.baseURL + '../assets/images/earthmap1k.jpg'),
         bumpMap: THREE.ImageUtils.loadTexture(Earth.baseURL + 'assets/images/earthbump1k.jpg'),
         bumpScale: 0.05,
         specularMap: THREE.ImageUtils.loadTexture(Earth.baseURL + 'assets/images/earthspec1k.jpg'),
